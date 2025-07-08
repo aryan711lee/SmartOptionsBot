@@ -11,11 +11,11 @@ from option_selector import get_atm_option
 
 # ========== CONFIG ==========
 INDEX_SYMBOL   = "NIFTY"
-INDEX_TOKEN    = "99926009"    # From instruments.csv
+INDEX_TOKEN    = "99926000"    # From instruments.csv
 EXCHANGE       = "NSE"
-INTERVAL       = "FIVE_MINUTE" # ONE_MINUTE, FIVE_MINUTE, etc.
+INTERVAL       = "ONE_MINUTE" # ONE_MINUTE, FIVE_MINUTE, etc.
 QUANTITY       = 50
-SLEEP_SECONDS  = 300           # 5 minutes
+SLEEP_SECONDS  = 60           # 5 minutes
 # ============================
 
 def is_market_open(now=None):
@@ -36,7 +36,7 @@ def fetch_ohlc(api, symbol_token):
         return pd.DataFrame()
 
     # Sliding window of last 2 candles = 10 minutes
-    window = 2 * 5  # minutes
+    window = 4 * 1  # minutes
     from_dt = (now - timedelta(minutes=window)).strftime("%Y-%m-%d %H:%M")
     to_dt   = now.strftime("%Y-%m-%d %H:%M")
 

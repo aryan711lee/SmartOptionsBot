@@ -18,4 +18,13 @@ def calculate_macd(df, fast=12, slow=26, signal=9):
     macd = exp1 - exp2
     signal_line = macd.ewm(span=signal, adjust=False).mean()
     return macd, signal_line
+
+def calculate_bollinger_bands(df, period=20, num_std=2):
+    sma = df['close'].rolling(window=period).mean()
+    std = df['close'].rolling(window=period).std()
+    upper_band = sma + num_std * std
+    lower_band = sma - num_std * std
+    return upper_band, lower_band, sma
+
+
  
